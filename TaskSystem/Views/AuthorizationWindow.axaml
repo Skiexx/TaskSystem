@@ -24,6 +24,7 @@
                  Text="{Binding Login}"/>
         <TextBox Name="PasswordBox" 
                  Watermark="Пароль"
+                 Text="{Binding Password}"
                  PasswordChar="*"/>
         <StackPanel Orientation="Horizontal"
                     Spacing="20"
