@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TaskSystem.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="250"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        x:Class="TaskSystem.Views.AuthorizationWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Авторизация">
+    <Design.DataContext>
+        <vm:AuthorizationWindowViewModel/>
+    </Design.DataContext>
+
+    <StackPanel Orientation="Vertical"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Spacing="15">
+        <TextBlock Text="Авторизация"
+                   FontSize="24"
+                   FontWeight="Black"/>
+        <TextBox Watermark="Логин"
+                 Text="{Binding Login}"/>
+        <TextBox Name="PasswordBox" 
+                 Watermark="Пароль"
+                 PasswordChar="*"/>
+        <StackPanel Orientation="Horizontal"
+                    Spacing="20"
+                    HorizontalAlignment="Center">
+            <Button Content="Войти"
+                    Command="{Binding SignIn}"
+                    CommandParameter="{Binding ElementName=PasswordBox}"/>
+            <Button Content="Регистрация"
+                    />
+        </StackPanel>
+    </StackPanel>
+
+</Window>
