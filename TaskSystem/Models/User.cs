@@ -18,6 +18,8 @@ namespace TaskSystem.Models
         public string Password { get; set; } = null!;
         public string PhoneNumber { get; set; } = null!;
 
+        public string FullName => $"{LastName} {FirstName} {MiddleName}";
+
         public virtual ICollection<Task> TaskCustomers { get; set; }
         public virtual ICollection<Task> TaskPerformers { get; set; }
     }

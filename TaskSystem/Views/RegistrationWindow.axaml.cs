@@ -5,11 +5,11 @@ using TaskSystem.ViewModels;
 
 namespace TaskSystem.Views;
 
-public partial class TaskSystemWindow : Window
+public partial class RegistrationWindow : Window
 {
-    public TaskSystemWindow()
+    public RegistrationWindow()
     {
-        DataContext = new TaskSystemViewModel();
+        DataContext = new RegistrationViewModel();
         InitializeComponent();
 #if DEBUG
         this.AttachDevTools();

@@ -1,0 +1,54 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400"
+        Height="400" Width="300" CanResize="False" 
+        x:Class="TaskSystem.Views.RegistrationWindow"
+        xmlns:vm="using:TaskSystem.ViewModels"
+        Title="Регистрация"
+        Name="Window">
+        
+    <Design.DataContext>
+        <vm:RegistrationViewModel/>
+    </Design.DataContext>
+    
+    <StackPanel Orientation="Vertical"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Margin="0,15,0,0"
+                Spacing="15">
+        <TextBlock Text="Регистрация" FontSize="24"
+                   FontWeight="Black"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+        <TextBox Watermark="Логин"
+                 Text="{Binding Login}"
+                 Width="200"/>
+        <TextBox Watermark="Пароль"
+                 PasswordChar="*"
+                 Text="{Binding Password}"
+                 Width="200"/>
+        <TextBox Watermark="Фамилия"
+                 Text="{Binding LastName}"
+                 Width="200"/>
+        <TextBox Watermark="Имя"
+                 Text="{Binding FirstName}"
+                 Width="200"/>
+        <TextBox Watermark="Отчество"
+                 Text="{Binding MiddleName}"
+                 Width="200"/>
+        <TextBox Watermark="Номер телефона"
+                 Text="{Binding PhoneNumber}"
+                 Width="200"/>
+        <StackPanel Orientation="Horizontal"
+                    Spacing="15">
+            <Button Content="Зарегестрироваться"
+                    Command="{Binding Registration}"
+                    CommandParameter="{Binding ElementName=Window}"/>
+            <Button Content="Отмена"
+                    Command="{Binding Cancel}"
+                    CommandParameter="{Binding ElementName=Window}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

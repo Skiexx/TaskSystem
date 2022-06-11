@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using ReactiveUI;
 using TaskSystem.Core;
 using TaskSystem.Models;
+using TaskSystem.Views;
 
 namespace TaskSystem.ViewModels
 {
@@ -11,15 +12,18 @@ namespace TaskSystem.ViewModels
     {
         public AuthorizationWindowViewModel()
         {
-            SignIn = ReactiveCommand.Create<TextBox>(_signIn);
+            SignIn = ReactiveCommand.Create<Window>(SignInImpl);
+            Registration = ReactiveCommand.Create<Window>(RegistrationImpl);
         }
 
-        public ReactiveCommand<TextBox, Unit> SignIn { get; }
+        public ReactiveCommand<Window, Unit> SignIn { get; }
 
-        private void _signIn(TextBox passwordBox)
+        public ReactiveCommand<Window, Unit> Registration { get; }
+
+        private void SignInImpl(Window window)
         {
             var authUser = Connector.GetContext().Users
-                .FirstOrDefault(u => u.Login == Login && u.Password == passwordBox.Text);
+                .FirstOrDefault(u => u.Login == Login && u.Password == Password);
             if (authUser == null)
             {
                 MessageBox.Avalonia.MessageBoxManager
@@ -27,13 +31,23 @@ namespace TaskSystem.ViewModels
                 return;
             }
 
-            SetUser = authUser;
+            AuthorizedUser = authUser;
+            TaskSystemWindow taskSystemWindow = new();
+            taskSystemWindow.Show();
+            window.Close();
+        }
+
+        private void RegistrationImpl(Window window)
+        {
+            RegistrationWindow registrationWindow = new();
+            registrationWindow.Show();
+            window.Close();
         }
 
         #region [Propetries]
 
-        public string? Login { get; set; } = null;
-        public static User? SetUser { get; set; } = null;
+        public static string? Login { get; set; } = null;
+        public static User? AuthorizedUser { get; set; } = null;
         public string? Password { get; set; } = null;
 
         #endregion

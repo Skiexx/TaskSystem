@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:TaskSystem.ViewModels" 
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Height="450" Width="800"
         CanResize="False"
         WindowStartupLocation="CenterScreen"
         x:Class="TaskSystem.Views.TaskSystemWindow"
@@ -12,6 +13,59 @@
     <Design.DataContext>
         <vm:TaskSystemViewModel/>
     </Design.DataContext>
-    
-    <StackPanel />
+
+    <Grid ColumnDefinitions="350,*">
+        <ListBox BorderBrush="Black"
+                 BorderThickness="3"
+                 Height="430"
+                 Width="330"
+                 HorizontalAlignment="Left"
+                 Margin="10,0,0,0"
+                 Items="{Binding TaskBox}"
+                 SelectedItem="{Binding SelectedTask}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" FontSize="16" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Column="1" RowDefinitions="*,*">
+            <StackPanel Grid.Row="0"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Margin="20,20,0,0"
+                        Spacing="15">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Заголовок: " FontSize="16"/>
+                    <TextBlock Text="{Binding SelectedTask.Title}" 
+                               FontSize="16"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Описание: " FontSize="16"/>
+                    <TextBlock Text="{Binding SelectedTask.Description}"
+                               FontSize="16"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="ФИО Заказчика: " FontSize="16"/>
+                    <TextBlock Text="{Binding SelectedTask.Customer.FullName}"
+                               FontSize="16"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Телефон для связи: " FontSize="16"/>
+                    <TextBlock Text="{Binding SelectedTask.Customer.PhoneNumber}"
+                               FontSize="16" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="1" 
+                        Orientation="Horizontal" 
+                        Spacing="10" HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,15,15">
+                <Button Content="Взять задачу" FontSize="16"
+                        Command="{Binding GetTask}"/>
+                <Button Content="Вернуться" FontSize="16"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
 </Window>
