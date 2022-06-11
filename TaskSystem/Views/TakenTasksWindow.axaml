@@ -1,20 +1,20 @@
-<Window xmlns="https://github.com/avaloniaui"
+﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="using:TaskSystem.ViewModels" 
+        xmlns:vm="using:TaskSystem.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Width="800" Height="450"
         CanResize="False"
         WindowStartupLocation="CenterScreen"
-        x:Class="TaskSystem.Views.TaskSystemWindow"
-        Title="Система задач"
+        x:Class="TaskSystem.Views.TakenTasksWindow"
+        Title="Взятые задачи"
         Name="Window">
     
     <Design.DataContext>
-        <vm:TaskSystemViewModel/>
+        <vm:TakenTasksViewModel/>
     </Design.DataContext>
-
+    
     <Grid ColumnDefinitions="350,*">
         <ListBox BorderBrush="Black"
                  BorderThickness="3"
@@ -63,8 +63,8 @@
                         Spacing="10" HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Margin="0,0,15,15">
-                <Button Content="Взять задачу" FontSize="16"
-                        Command="{Binding GetTask}"/>
+                <Button Content="Отменить задачу" FontSize="16"
+                        Command="{Binding CancelTask}"/>
                 <Button Content="Вернуться" FontSize="16"
                         Command="{Binding Exit}"
                         CommandParameter="{Binding ElementName=Window}"/>

@@ -1,0 +1,68 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="350"
+        Width="300" Height="350"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen"
+        x:Class="TaskSystem.Views.MainMenuWindow"
+        xmlns:vm="using:TaskSystem.ViewModels"
+        Title="Главное меню"
+        Name="Window">
+    
+    <Design.DataContext>
+        <vm:MainMenuViewModel/>
+    </Design.DataContext>
+    
+    <StackPanel Orientation="Vertical"
+                Spacing="15"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="Главное меню"
+                   FontWeight="Black" FontSize="24"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+        <Button Content="Профиль"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Height="31" Width="210"
+                HorizontalContentAlignment="Center"
+                Command="{Binding Profile}"
+                CommandParameter="{Binding ElementName=Window}"/>
+        <Button Content="Список свободных задач"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Height="31" Width="210"
+                HorizontalContentAlignment="Center"
+                Command="{Binding TaskSystem}"
+                CommandParameter="{Binding ElementName=Window}"/>
+        <Button Content="Взятые задачи"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Height="31" Width="210"
+                HorizontalContentAlignment="Center"
+                Command="{Binding TakenTasks}"
+                CommandParameter="{Binding ElementName=Window}"/>
+        <Button Content="Мои задачи"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Height="31" Width="210"
+                HorizontalContentAlignment="Center"
+                Command="{Binding MyTasks}"
+                CommandParameter="{Binding ElementName=Window}"/>
+        <Button Content="Создать задачу"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Height="31" Width="210"
+                HorizontalContentAlignment="Center"
+                Command="{Binding CreateTask}"
+                CommandParameter="{Binding ElementName=Window}"/>
+        <Button Content="Выйти"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Height="31" Width="210"
+                HorizontalContentAlignment="Center"
+                Command="{Binding Exit}"
+                CommandParameter="{Binding ElementName=Window}"/>
+    </StackPanel>
+</Window>

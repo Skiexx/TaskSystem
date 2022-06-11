@@ -15,7 +15,7 @@ namespace TaskSystem.Models
         public string LastName { get; set; } = null!;
         public string MiddleName { get; set; } = null!;
         public string Login { get; set; } = null!;
-        public string Password { get; set; } = null!;
+        public string? Password { get; set; } = null!;
         public string PhoneNumber { get; set; } = null!;
 
         public string FullName => $"{LastName} {FirstName} {MiddleName}";

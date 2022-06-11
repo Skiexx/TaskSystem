@@ -1,16 +1,16 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:TaskSystem.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="250"
-        WindowStartupLocation="CenterScreen"
+        xmlns:vm="using:TaskSystem.ViewModels" 
+        mc:Ignorable="d" d:DesignHeight="250" d:DesignWidth="300"
+        Height="250" Width="300"
         CanResize="False"
+        WindowStartupLocation="CenterScreen"
         x:Class="TaskSystem.Views.AuthorizationWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Height="250"
-        Width="300"
         Title="Авторизация" Name="Window">
+    
     <Design.DataContext>
         <vm:AuthorizationWindowViewModel/>
     </Design.DataContext>

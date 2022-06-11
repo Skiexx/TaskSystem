@@ -75,6 +75,8 @@ namespace TaskSystem.Core
             {
                 entity.ToTable("User");
 
+                entity.HasIndex(e => e.Login, "User_UN").IsUnique();
+
                 entity.Property(e => e.FirstName).HasMaxLength(100);
 
                 entity.Property(e => e.LastName).HasMaxLength(100);

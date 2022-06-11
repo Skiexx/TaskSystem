@@ -6,6 +6,7 @@
         Height="400" Width="300" CanResize="False" 
         x:Class="TaskSystem.Views.RegistrationWindow"
         xmlns:vm="using:TaskSystem.ViewModels"
+        WindowStartupLocation="CenterScreen"
         Title="Регистрация"
         Name="Window">
         

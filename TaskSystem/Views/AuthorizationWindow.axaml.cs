@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using TaskSystem.ViewModels;
 
 namespace TaskSystem.Views
 {
@@ -6,6 +7,7 @@ namespace TaskSystem.Views
     {
         public AuthorizationWindow()
         {
+            DataContext = new AuthorizationWindowViewModel();
             InitializeComponent();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Reactive;
 using Avalonia.Controls;
+using MessageBox.Avalonia.Enums;
 using ReactiveUI;
 using TaskSystem.Core;
 using TaskSystem.Models;
@@ -27,26 +28,28 @@ namespace TaskSystem.ViewModels
             if (authUser == null)
             {
                 MessageBox.Avalonia.MessageBoxManager
-                    .GetMessageBoxStandardWindow("Ошибка", "Пользователь не найден, повторите попытку.").Show();
+                    .GetMessageBoxStandardWindow("Ошибка",
+                        "Пользователь не найден, повторите попытку.",
+                        ButtonEnum.Ok,
+                        Icon.Error)
+                    .Show();
                 return;
             }
 
             AuthorizedUser = authUser;
-            TaskSystemWindow taskSystemWindow = new();
-            taskSystemWindow.Show();
+            new MainMenuWindow().Show();
             window.Close();
         }
 
         private void RegistrationImpl(Window window)
         {
-            RegistrationWindow registrationWindow = new();
-            registrationWindow.Show();
+            new RegistrationWindow().Show();
             window.Close();
         }
 
         #region [Propetries]
 
-        public static string? Login { get; set; } = null;
+        public static string? Login { get; set; }
         public static User? AuthorizedUser { get; set; } = null;
         public string? Password { get; set; } = null;
 
