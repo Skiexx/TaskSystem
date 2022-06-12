@@ -3,16 +3,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:TaskSystem.ViewModels"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Width="800" Height="450"
         CanResize="False"
-        WindowStartupLocation="CenterScreen"
-        x:Class="TaskSystem.Views.TakenTasksWindow"
-        Title="Взятые задачи"
+        x:Class="TaskSystem.Views.MyTasksWindow"
+        Title="Мои задачи"
         Name="Window">
     
     <Design.DataContext>
-        <vm:TakenTasksViewModel/>
+        <vm:MyTasksViewModel/>
     </Design.DataContext>
     
     <Grid ColumnDefinitions="350,*">
@@ -26,11 +26,11 @@
                  SelectedItem="{Binding SelectedTask}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Title}" FontSize="16" />
+                    <TextBlock Text="{Binding Title}" FontSize="16"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Grid Grid.Column="1" RowDefinitions="*,*">
+        <Grid Grid.Column="1" RowDefinitions="*,*,90">
             <StackPanel Grid.Row="0"
                         Orientation="Vertical"
                         HorizontalAlignment="Left"
@@ -50,27 +50,42 @@
                                TextWrapping="Wrap"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="ФИО Заказчика: " FontSize="16"/>
-                    <TextBlock Text="{Binding SelectedTask.Customer.FullName}"
+                    <TextBlock Text="ФИО выполнителя: " FontSize="16"/>
+                    <TextBlock Text="{Binding SelectedTask.Performer.FullName}"
                                FontSize="16"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Телефон для связи: " FontSize="16"/>
-                    <TextBlock Text="{Binding SelectedTask.Customer.PhoneNumber}"
-                               FontSize="16" />
+                    <TextBlock Text="Статуст заказа: " FontSize="16"/>
+                    <ComboBox Items="{Binding Statuses}"
+                              SelectedItem="{Binding SelectedStatus}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Title}" FontSize="16" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Row="1" 
-                        Orientation="Horizontal" 
-                        Spacing="10" HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
-                        Margin="0,0,15,15">
-                <Button Content="Отменить задачу" FontSize="16"
-                        Command="{Binding CancelTask}"/>
-                <Button Content="Вернуться" FontSize="16"
-                        Command="{Binding Exit}"
-                        CommandParameter="{Binding ElementName=Window}"/>
-            </StackPanel>
+            <Grid Grid.Row="2" RowDefinitions="*,*">
+                <CheckBox Grid.Row="0" Content="Отображать готовые задачи?"
+                          Name="Button"
+                          IsChecked="False"
+                          Command="{Binding CheckButton}"
+                          CommandParameter="{Binding ElementName=Button}"/>
+                <StackPanel Grid.Row="1" 
+                            Orientation="Horizontal" 
+                            Spacing="10" HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,0,15">
+                    <Button Content="Сохранить текущую задачу"
+                            Command="{Binding SaveChanges}"
+                            CommandParameter="{Binding ElementName=Button}"/>
+                    <Button Content="Вернуться"
+                            Command="{Binding Exit}"
+                            CommandParameter="{Binding ElementName=Window}"/>
+                </StackPanel>
+            </Grid>
+            
         </Grid>
     </Grid>
 </Window>

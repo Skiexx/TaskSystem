@@ -1,0 +1,46 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:TaskSystem.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="340"
+        Width="400" Height="340"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen"
+        x:Class="TaskSystem.Views.CreateTaskWindow"
+        Title="Создать задачу"
+        Name="Window">
+    
+    <Design.DataContext>
+        <vm:CreateTaskViewModel/>
+    </Design.DataContext>
+    
+    <StackPanel Orientation="Vertical"
+                Spacing="15"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+        <Label HorizontalAlignment="Center">
+            <TextBlock Text="Создать новую задачу"
+                       FontSize="24" FontWeight="Black"/>
+        </Label>
+        <TextBox Watermark="Название"
+                 Text="{Binding Label}"
+                 Width="320"
+                 MaxLength="100"/>
+        <TextBox Watermark="Описание"
+                 Text="{Binding Description}"
+                 TextWrapping="Wrap" AcceptsReturn="True"
+                 Width="320"
+                 Height="140"
+                 MaxLength="300"/>
+        <StackPanel Orientation="Horizontal" Spacing="15"
+                    VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="Создать"
+                    Command="{Binding CreateTask}"
+                    CommandParameter="{Binding ElementName=Window}"/>
+            <Button Content="Отмена"
+                    Command="{Binding Exit}"
+                    CommandParameter="{Binding ElementName=Window}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

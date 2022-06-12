@@ -16,7 +16,7 @@ public class MainMenuViewModel : ViewModelBase
         Exit = ReactiveCommand.Create<Window>(ExitImpl);
         MyTasks = ReactiveCommand.Create<Window>(MyTasksImpl);
     }
-    
+
     public ReactiveCommand<Window, Unit> Profile { get; }
     public ReactiveCommand<Window, Unit> TaskSystem { get; }
     public ReactiveCommand<Window, Unit> TakenTasks { get; }
@@ -29,27 +29,34 @@ public class MainMenuViewModel : ViewModelBase
         new ProfileWindow().Show();
         window.Close();
     }
+
     private void TaskSystemImpl(Window window)
     {
         new TaskSystemWindow().Show();
         window.Close();
     }
+
     private void TakenTasksImpl(Window window)
     {
         new TakenTasksWindow().Show();
         window.Close();
     }
+
     private void CreateTaskImpl(Window window)
     {
-        
+        new CreateTaskWindow().Show();
+        window.Close();
     }
+
     private void ExitImpl(Window window)
     {
         new AuthorizationWindow().Show();
         window.Close();
     }
+
     private void MyTasksImpl(Window window)
     {
-        
+        new MyTasksWindow().Show();
+        window.Close();
     }
 }
